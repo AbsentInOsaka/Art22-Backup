@@ -1,0 +1,39 @@
+/*cozy homepage*/
+/*sunset in the back, try to turn purple in ps*/
+
+body {
+  background-image: url("data/sunsetfire2.png");
+  background-position: center;
+  background-size: cover;
+}
+
+h1{
+  font-family: 'Gamja Flower', cursive;
+  color: white;
+  text-align: center;
+  background-color: lightblue;
+}
+
+h2{
+  font-family: 'Gamja Flower', cursive;
+  color: white;
+  text-align: center;
+  background-color: lightblue;
+}
+
+h3 {
+  text-align: center;
+}
+
+a:link {
+  font-family: 'Gamja Flower', cursive;
+  text-align: center;
+  outline-style: dashed;
+  background: lightblue;
+  color: white;
+  margin: 120px;
+}
+
+a:hover {
+  color: blue;
+}

@@ -1,0 +1,23 @@
+/*  OUR STYLE SHEET */
+
+body{
+	background-color: #eeeeee;
+}
+
+p{
+	margin-left: 180px;
+	color: #61;
+	font-family: 'Khula', sans-serif;
+}
+
+h1{
+	font-family: 'Khula', sans-serif;
+	color: #212121;
+	margin-left: 100px;
+}
+
+h2{
+	font-family: 'Khula', sans-serif;
+	font-size: 14px;
+	padding-left: 400px;
+}

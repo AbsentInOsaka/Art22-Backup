@@ -1,0 +1,26 @@
+body {
+  position: relative;
+  background-color: black;
+  z-index: 1;
+}
+
+p {
+  position: relative;
+  text-align: center;
+  font-family: 'Cutive Mono', monospace;
+  color: black;
+  z-index: 4;
+}
+
+h1 {
+  position: fixed;
+}
+
+h2 {
+  position: relative;
+  text-align: center;
+  font-family: 'Cutive Mono', monospace;
+  color: black;
+  font-size: 100px;
+  z-index: 4;
+}
