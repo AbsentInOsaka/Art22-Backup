@@ -1,0 +1,549 @@
+﻿Brian ordonez: Bright as a Porteon Star
+
+
+
+
+var Star = new Array(360);
+function preload(){
+        img = loadImage("Data/Nebula.jpg")
+        sound=loadSound("Data/Porter Robinson & Madeon - Shelter (Official Audio).mp3 ")
+}
+function setup() {
+   createCanvas(500, 500);
+   sound.setVolume(.5);
+        sound.play();
+        fft=new p5.FFT();
+        var spectrum = fft.analyze();
+   
+ }
+
+
+function draw() {
+  image(img, 0, 0, width, height);
+  var spectrum = fft.analyze();
+  translate(width / 2, width / 2);
+  for (var i = 0; i < Star.length; i++) {
+          Star[i] = floor(randomGaussian(0, 10));
+     rotate(TWO_PI / Star.length);
+     stroke(0);
+     for (var z =0; z<spectrum.length; z++){
+             var h=map(spectrum[i],0,255,0,120);
+     var dist = abs(2.5*h-Star[i]);
+ }
+     stroke(floor(randomGaussian(125,100)),floor(randomGaussian(125,100)),floor(randomGaussian(125,100)))
+     line(25, 0, dist, 0);
+   }
+ }
+
+
+Mabelle Erhahon: Psalm 139 by Rivers and Robots
+
+
+
+
+var sound, fft;
+var y;
+
+
+//--------------
+function preload() {
+    
+    sound=loadSound("data/Psalm 139.mp3");
+
+
+}
+//--------------
+
+
+function setup() {
+    
+    //canvas
+    canvas= createCanvas(1000,500);
+    canvas.position(0,0);
+    canvas.style('z-index', '-99')
+    background(0,0,0);
+    
+    //play the sound
+    sound.setVolume(0.5);
+    sound.play();
+    fft = new p5.FFT();
+    
+    //the height
+    y = height / 2;
+    
+    
+}
+//--------------
+
+
+function draw() {
+    
+    background(0,0,0);
+    
+    if (mouseX < width/5) {
+        background(50, 50, 50)
+    }
+    else if (mouseX > 2*width/5) {
+        background(100, 100, 100)
+    }
+    else if (mouseX > 3*width/5) {
+        background(175, 175, 175)
+    }
+    else if (mouseX > 4*width/5) {
+        background(250, 250, 250)
+    }
+    
+    //update the FFT
+    var spectrum = fft.analyze();
+
+
+    
+    for(var i=0; i< spectrum.length; i++){
+        
+        //calc height of each slice
+        var h=map(spectrum[i], 0, 255, 0, 80);
+        
+        // calc x position
+        var x= map(i, 0, spectrum.length, 0, width);
+        
+        //we draw!
+        stroke(0, 0, 0, 20);
+        if (h>0.1) line(x, y-h, x, y+h);
+    }
+    
+//    change y postion
+    y+=0.1;
+    if(y>height) {
+        y=height/4;
+    }
+    
+    
+    
+}
+
+
+Daniel Karnofel: Lift Yourself
+
+
+//
+// Midterm Assignment B - Rocket Ship
+// - - - - - - - - - - - - - - - 
+
+
+var x, y;
+var speedX, speedY;
+var groundY, moonY, marsY;
+var xS = [];
+var yS = [];
+var totalStars, speedS;
+var angle;
+
+
+// - - - - - - - - - - - - - - - 
+
+
+function preload(){
+        
+        // Load rocket image
+        rocket = loadImage("data/rocket.png");
+
+
+        // Load song
+        sound = loadSound("data/Lift Yourself.mp3");
+
+
+}
+
+
+// - - - - - - - - - - - - - - - 
+
+
+function setup(){
+        
+        // Canvas Operations
+        var canvas = createCanvas(1000, 500);
+        canvas.position(250, 10);
+        canvas.style('z-index', '-1');
+        
+        background(149, 166, 193);
+
+
+        // Play the sound
+        sound.setVolume(0.5);
+        sound.play();
+
+
+        // Initial values
+
+
+        x = width/2;
+        y = (4/5)*height;
+
+
+        speedX = 0;
+        speedY = 0;
+
+
+        groundY = (4/5)*height;
+        moonY = -50;
+        marsY = -100;
+
+
+        bColor = 225;
+
+
+        totalStars = 25;
+
+
+        angle = 0;
+
+
+        for (var i = 0; i < totalStars; i++) {
+                xS[i] = random(0, width);
+                yS[i] = random(0, height);
+                speedS = 1;
+        }
+
+
+}
+
+
+// - - - - - - - - - - - - - - - 
+
+
+function draw(){
+
+
+        background(bColor);
+
+
+        drawStars();
+
+
+        // Draw ground
+        push();
+        noStroke();
+        fill(117, 137, 119);
+        rect(0, groundY, width, groundY);
+        pop();
+
+
+        launchRocket();
+
+
+        //Draw rocket
+        image(rocket, x-25, y-25, 50, 50);
+
+
+}
+
+
+// - - - - - - - - - - - - - - - 
+
+
+function launchRocket(){
+
+
+        // Animate rocket
+        speedY = -1 - (10 - y/40);
+        speedX = 0
+
+
+        x += speedX;
+        y += speedY;
+
+
+        if(y <= 300){
+                y = 300;
+                groundY -= speedY;
+
+
+                bColor -= 1;
+        }
+
+
+        if(bColor <= 0){
+                noStroke();
+                fill(244, 244, 227);
+                ellipse(width/2, moonY, 100, 100);
+                moonY += 1.5;
+        }
+
+
+        if(moonY >= height){
+                noStroke();
+                fill(183, 56, 31);
+                ellipse(width/2, marsY, 200, 200);
+                marsY += 1;
+        }
+
+
+        if(marsY >= 400){
+                marsY = 400;
+                
+                x = 0;
+                y = -50;
+
+
+                angle++;
+
+
+                translate(width/2, 350);
+
+
+                rotate(radians(angle));
+
+
+        }
+
+
+        if(angle >= 3600){
+                sound.stop();
+        }
+
+
+}
+
+
+// - - - - - - - - - - - - - - - 
+
+
+function drawStars(){
+        
+        for (var i = 0; i < totalStars; i++) {
+
+
+                // Calculate speed
+                speedS = 1;
+
+
+                // Calculate y position
+                yS[i] = yS[i] + speedS;
+
+
+                // Draw individual raindrop
+                noStroke();
+                fill(225);
+                ellipse(xS[i], yS[i], 2, 2);
+                
+                if(yS[i] > height){
+                        
+                        // Reset drop at start
+                        xS[i] = random(0, width);
+                        yS[i] = 0;
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Emily Sam: Fireworks
+
+
+var canvas;
+
+
+var x = [];
+var y = [];
+var speedX = [];
+var speedY = [];
+var directionX = [];
+var directionY = [];
+
+
+function setup(){
+        canvas = createCanvas(1400,800);
+        background(0);
+
+
+for( var i = 0; i < 50; i++){
+                x[i] = width/2;
+                y[i] = height/2;
+                speedX[i] = random(5,10);
+                speedY[i] = random(5,10);
+                directionX[i] = random(-1,1);
+                directionY[i] = random(-1,1);
+        }
+}
+
+
+function draw(){
+        explode();
+        frame();
+}
+
+
+function frame(){
+        stroke(255, 205, 119);
+        strokeWeight(10);
+        noFill();
+        rect(25, 25, 1350, 750);
+        strokeWeight(5);
+        rect(50, 50, 1300, 700);
+        strokeWeight(2.5);
+        rect(75, 75, 1250, 650);
+}
+
+
+function explode(){
+
+
+        background(0);
+        for( var i = 0; i < 50; i++){
+        x[i] += speedX[i] * directionX[i];
+        y[i] += speedY[i] * directionY[i];
+        //if( x[i] > width) directionX[i] = -1;
+        //if( x[i] < 0) directionX[i] = 1;
+        //if( y[i] > height) directionY[i] = -1;
+        //if( y[i] < 0) directionY[i] = 1;
+
+
+        noStroke();
+        fill(random(220,255), random(150,255), random(150,255), 200);
+        rect(x[i], y[i], 50, 50);
+        
+        push();
+        var cSize1 = random(125,150);
+        fill(random(220,255), random(150,255), random(150,255), random(50,75));
+        translate(25,25);
+        ellipse(x[i], y[i], cSize1, cSize1);
+        pop();
+
+
+        push();
+        var cSize2 = random(275,300);
+        fill(random(220,255), random(150,255), random(150,255), random(25,50));
+        translate(25,25);
+        ellipse(x[i], y[i], cSize2, cSize2);
+        pop();
+
+
+        push();
+        var cSize3 = random(475,500);
+        fill(random(220,255), random(150,255), random(150,255), random(25));
+        translate(25,25);
+        ellipse(x[i], y[i], cSize3, cSize3);
+        pop();
+
+
+        }
+}
+
+
+Kelly Wang: “Time”
+
+
+var x;
+var y;
+var ySound;
+var a;
+var b;
+var img1; 
+var song;
+
+
+function preload(){
+        img1 = loadImage("data/rolex.png");
+        song = loadSound("cig.mp3");
+}
+
+
+function setup(){
+        canvas=createCanvas(500,800);
+        canvas.position(500,0);
+        canvas.style('z-index', '-99');
+        background(0,25);
+        x = 350;
+        y = 100;
+        a = 0.75;
+        b = 0.75;
+        song.setVolume(0.5);
+        song.play();
+        fft = new p5.FFT();
+        ySound = height/2;
+        
+}
+
+
+function draw(){
+        x = x + a;
+
+
+                if (x>500){
+                        a = -a;        
+                        x = x + a;
+                }
+
+
+        x = x + a;
+
+
+                if (x<0){
+                        a = -a;
+                        x = x + a;
+                }
+
+
+        y = y + (2.3*b);
+
+
+                if (y>800){
+                        b = -b;
+                        y = y + b;
+                }
+
+
+        y = y + (2.3*b);
+
+
+                if (y<0){
+                        b = -b;
+                        y = y + b;
+                }
+
+
+        
+        image(img1,x+30,y+30,100,100);
+        draw2();
+        
+}
+
+
+function draw2(){
+        var spectrum = fft.analyze();
+        for (var i =0; i <spectrum.length; i++){
+                //A calculate the height of each slice
+                var h = map(spectrum[i],0,255,0,80);
+
+
+                //B calculating the x position
+                var x = map(i, 0, spectrum.length/4, 0, width);
+
+
+                //C We draw!
+                stroke(50,0,0,20);
+                strokeWeight(4);
+                line(x, ySound, x, ySound+h)
+
+
+        }
+
+
+        ySound += 0.1;
+        if (ySound>height){
+                ySound = height/4;
+        }
+
+
+}

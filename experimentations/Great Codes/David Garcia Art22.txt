@@ -1,0 +1,105 @@
+// Midterm Extra Credit
+// Null variables
+var img1, angle1, speed1; 
+var img2, angle2, speed2; 
+var angle3, speed3, lineSize;
+var satAngle, satSpeed;
+var img3, img4;
+
+
+// Preloads images
+function preload(){
+	img1 = loadImage("data/landscape1.png"); 
+	img2 = loadImage("data/landscape2.png"); 
+    img3 = loadImage("data/landscape3.png"); 
+	img4 = loadImage("data/landscape4.png"); 
+}
+
+// Global settings for speed, angles
+function setup(){
+	createCanvas(500, 500);
+	background(255);
+	
+    angle1 = 30; speed1 = 7/10;
+	angle2 = 30; speed2 = 7;
+	angle3 = 40; speed3 = 1.6;
+    satAngle = 0; satSpeed = 2;
+    lineSize = 130;
+
+}
+
+// Loop for carrying out functions
+function draw(){
+	background(255);
+
+	placeImage1();
+	placeImage2();
+	drawAClock();
+}
+
+// Parent functions
+// if condition set for random color change when angle1mod(180)>90
+// Speed scaled by mouseX
+function placeImage1(){
+	push();
+	angle1 += speed1; 
+    if (angle1%180>90){
+        tint(random(255),random(255),random(255));
+    }
+	translate(250, 250);
+	rotate(radians(angle1)*mouseX*0.001); // Speed scaled by mouseX
+	image(img1, -250, -250, 500, 500);
+        if (angle1%180>90){
+            image(img4,-250,-250,500,500);
+        }
+        if (angle1%180>180){
+            image(img3,-250,-250,500,500);
+        }
+	pop();
+}
+
+//  Makes image dissapear based on same mod function above
+function placeImage2(){
+	//  2. Image 2
+	push();
+	angle2 += speed2; //  We calculate the new position
+	translate(250, 250);
+	rotate(radians(angle2)*mouseY*0.01); //  We rotate
+	tint(255, 255, 0);
+    if (angle2%180>90){
+        tint(255,0);
+    }
+	image(img2, -250, -250, 500, 500); //  Placing the image
+	pop();
+
+}
+
+// Clock based on satelite function
+function drawAClock(){
+	push();
+	angle3 += speed3;
+	stroke(255);
+	translate(250, 250);
+	rotate(radians(angle3));
+	line(0, 0, 0, lineSize);
+	fill(255);
+	ellipse(0, 0, 5, 5);
+	ellipse(0, lineSize, 5, 5);
+        push();
+        satAngle += satSpeed;
+        translate(0,lineSize);
+        rotate(radians(satAngle));
+        stroke('green');
+        line(0,0,0,40);
+        ellipse(0,40,3,3);
+            push();
+            satAngle += satSpeed;
+            translate(0,40);
+            rotate(radians(satAngle));
+            stroke('red');
+            line(0,0,0,40);
+            ellipse(0,40,3,3);
+            pop();
+    
+	pop();
+}
