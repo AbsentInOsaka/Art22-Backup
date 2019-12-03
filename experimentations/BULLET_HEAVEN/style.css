@@ -1,0 +1,26 @@
+body{
+  background-color: rgb(193, 165, 79);
+  font-family: 'Nova Mono', monospace;
+  color: white;
+  display: inline-block;
+}
+
+h3 {
+  text-align: left;
+  border-style: double;
+  border-color: white;
+  width: 500px;
+  height: 700px;
+  display: inline-block;
+  background-image: url("data/background.png");
+}
+
+h1{
+  text-align: center;
+}
+
+img {
+  display: inline-block;
+  border-style: dotted;
+  border-color: white;
+}

@@ -1,0 +1,25 @@
+/*  OUR STYLE SHEET */
+
+body{
+	background-color: #eeeeee;
+}
+
+p{
+	margin-left: 180px;
+	color: #5b5b5b;
+	font-family: 'Khula', sans-serif;
+	font-size: 11px;
+}
+
+h1{
+	font-family: 'Khula', sans-serif;
+	color: #3f3f3f;
+	margin-left: 100px;
+}
+
+h2{
+	position: fixed;
+	top: 0;
+	padding-left: 750px;
+	padding-top: 40px;
+}

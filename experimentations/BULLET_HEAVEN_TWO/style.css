@@ -1,0 +1,10 @@
+body{
+  background-color: rgb(61,0,141);
+  font-family: 'VT323', monospace;
+  /* display: inline-block; */
+  color: white;
+}
+
+h1{
+  text-align: center;
+}

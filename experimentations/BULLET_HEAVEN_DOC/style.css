@@ -1,0 +1,23 @@
+body{
+  background-color: rgb(193, 165, 79);
+  font-family: 'Nova Mono', monospace;
+  color: white;
+  display: block;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+img {
+  display: block;
+  border-style: dotted;
+  border-color: white;
+  text-align: center;
+  padding: auto;
+  margin: auto;
+}
